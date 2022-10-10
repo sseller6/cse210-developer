@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 
 
-namespace Unit02.Game
+namespace Unit02
 {
     /// <summary>
     /// A person who directs the game. 
@@ -23,9 +23,66 @@ namespace Unit02.Game
             _continuePlaying = true;
         }
 
+        private static char GetValidInput(string allowedCharacters)
+        {
+            while (true)
+            {
+                var input = Console.ReadLine().Trim();
+                foreach (char c in allowedCharacters)
+                {
+                    if (input == c.ToString())
+                    {
+                        return c;
+                    }
+
+                }
+                Console.WriteLine("Please re-enter your choice. ");
+            }
+
+
+        }
+
         public void StartGame()
         {
+            while (_continuePlaying & _deck.IsNextRoundAvailable())
+            {
+                var firstCard = _deck.Draw();
+                Console.WriteLine($"The card is: {firstCard}");
+                Console.Write("Higher or lower? [h/l] ");
+                var guess = GetValidInput("hl");
 
+                var secondCard = _deck.Draw();
+                Console.WriteLine($"The next card is: {secondCard}");
+
+                // If the guess is correct
+                if (
+                    (guess == 'l' & firstCard > secondCard) ||
+                    (guess == 'h' & secondCard > firstCard) )
+                {
+                    _score += 100;
+                }
+
+                // If the guess is not correct
+                else
+                {
+                    _score -= 75;
+                }
+
+                // Print off score
+                Console.WriteLine($"Your score is: {_score}");
+
+                if (_deck.IsNextRoundAvailable())
+                {
+                    Console.WriteLine("Play again? [y/n] ");
+                    var @continue = GetValidInput("yn");
+
+                    if (@continue == 'n')
+                        _continuePlaying = false;
+                }
+
+            }
+
+            Console.WriteLine("Thanks for playing! ");
         }
     }
  }

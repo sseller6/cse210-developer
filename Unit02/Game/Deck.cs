@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Unit02.Game
+namespace Unit02
 {
 
     public class Deck
@@ -28,7 +28,10 @@ namespace Unit02.Game
             
         }
 
-
+        public bool IsNextRoundAvailable()
+        {
+            return _cards.Count > 2;
+        }
 
 
 
