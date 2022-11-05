@@ -6,11 +6,9 @@ namespace Unit03
     {
         static void Main(string[] args)
         {
+            var director = new Director();
 
-
-            
-
-
+            director.StartGame();
         }
     }
 }
