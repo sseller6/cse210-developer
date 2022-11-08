@@ -34,9 +34,10 @@ namespace Unit03
                 }
                 else
                 {
-                    Console.Write("_");
+                    Console.Write("_ ");
                 }
             }
+            Console.WriteLine();
         }
 
         public void AddToGuesses(char guess)

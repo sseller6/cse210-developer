@@ -9,8 +9,9 @@ namespace Unit03
     internal class Director
     {
         private bool _isPlaying;
-
-        public string guess;
+        private char _guess;
+        private Word _word = new Word();
+        private Jumper _jumper = new Jumper();
 
         public Director()
         {
@@ -20,6 +21,9 @@ namespace Unit03
 
         public void StartGame()
         {
+            //This is a do while loop.
+            _jumper.DisplayJumper();
+
             while (_isPlaying)
             {
                 GetInputs();
@@ -32,18 +36,24 @@ namespace Unit03
         {
 
             Console.WriteLine("Guess a Letter [a-z]: ");
-            guess = Console.ReadLine();
-
+            _guess = char.Parse(Console.ReadLine());
+           
         }
 
         public void DoUpdates()
         {
-            Word.AddToGuesses(guess);
+            _word.AddToGuesses(_guess);
+
+            // update the jumper
+            // code end-game conditions.
         }
 
         public void DoOutputs()
         {
-            Word.DisplayGuesses();
+            _word.DisplayGuesses();
+
+            // print updated jumper by calling DisplayJumper
+            _jumper.DisplayJumper();
 
         }
     }
