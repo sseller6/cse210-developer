@@ -44,5 +44,40 @@ namespace Unit03
         {
             _guesses += guess;
         }
+        
+        // A method for checking for underscores.
+        public bool CheckForUnderscores()
+        {
+
+            for (int i = 0; i < _word.Length; i++)
+            {
+                if (!_guesses.Contains(_word[i]))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+            // foreach (char letter in _word)
+            // {
+            //     if (letter == '_')
+            //     {
+            //         return true;
+            //     }
+            // }
+            // return false;
+
+
+        public bool LetterInWord(char guess)
+        {
+            foreach (char letter in _word)
+            {
+                if (guess == letter)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

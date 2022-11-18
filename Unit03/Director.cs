@@ -34,7 +34,6 @@ namespace Unit03
 
         public void GetInputs()
         {
-
             Console.WriteLine("Guess a Letter [a-z]: ");
             _guess = char.Parse(Console.ReadLine());
            
@@ -45,16 +44,40 @@ namespace Unit03
             _word.AddToGuesses(_guess);
 
             // update the jumper
+            if (!_word.LetterInWord(_guess))
+            {
+                _jumper.CutLine();
+            }
             // code end-game conditions.
+
+            // if length of character is less than 4, big ded.
+            if (_jumper.GetCharacterLength() < 4)
+            {
+                _jumper.MakeDead();
+
+            }
         }
 
         public void DoOutputs()
         {
+            // Winning Condition.
+            if (!_word.CheckForUnderscores())
+            {
+                _isPlaying = false;
+                Console.WriteLine("You Win!");
+            }
+
+            if (_jumper.isDead)
+            {
+                _isPlaying = false;
+                Console.WriteLine("No More Parachute! Game Over!");
+            }
             _word.DisplayGuesses();
 
             // print updated jumper by calling DisplayJumper
             _jumper.DisplayJumper();
 
+        
         }
     }
 }

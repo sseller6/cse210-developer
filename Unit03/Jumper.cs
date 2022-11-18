@@ -17,13 +17,19 @@ namespace Unit03
             isDead = false;
 
             character = new List<string>();
-            character.Add(@"__");
+            character.Add(@" ___");
             character.Add(@"/___\");
             character.Add(@"\.../");
             character.Add(@".\./.");
             character.Add(@"..o..");
             character.Add(@"./|\.");
             character.Add(@"./.\.");
+        }
+
+        //This method returns the count of character.
+        public int GetCharacterLength()
+        {
+           return character.Count;
         }
 
         public void DisplayJumper()
@@ -37,7 +43,7 @@ namespace Unit03
             Console.WriteLine("^^^^^^^");
 
         }
-        private void CutLine()
+        public void CutLine()
         {
             character.RemoveAt(0);
         }
