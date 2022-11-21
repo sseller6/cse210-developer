@@ -4,19 +4,42 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Unit03
 {
     internal class Word
     {
         // Declare Variables for Word Class
 
+        private static Random rnd = new Random();
+
         private string _word;
 
         private string _guesses;
 
+        private List<string> _words;
+
         public Word()
         {
-            _word = "crocs";
+
+            _words = new List<string>()
+            {
+                "crocs",
+                "green",
+                "apple",
+                "water",
+                "items",
+            };
+
+            //_words.Add("crocs");
+            //_words.Add("green");
+            //_words.Add("apple");
+            //_words.Add("water");
+            //_words.Add("items");
+
+            int index = rnd.Next(_words.Count);
+
+            _word = _words[index];
 
             _guesses = "";
 
